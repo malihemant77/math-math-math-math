@@ -10,7 +10,7 @@
 
     <style>
         body {
-            font-family: 'Roboto Mono';
+            font-family: 'Cousine', sans-serif;
         }
 
         h1 {
@@ -24,8 +24,8 @@
         }
 
         p {
-            margin-top: 0em;
-            margin-bottom: 3em;
+            margin-top: 0;
+            margin-bottom: 0;
         }
 
         footer {
@@ -34,9 +34,18 @@
         }
 
         div.three-columns {
-            -webkit-columns: 100px 3;
-            -moz-columns: 100px 3;
-            columns: 100px 3;
+            -webkit-columns: 100px {{.ColumnCount}};
+            -moz-columns: 100px {{.ColumnCount}};
+            columns: 100px {{.ColumnCount}};
+        }
+
+        .question_text {
+            white-space: pre-wrap;
+            margin-bottom: {{.MarginBottom}};
+        }
+
+        .intro {
+            margin-bottom: {{.MarginBottom}};
         }
     </style>
 
@@ -48,9 +57,11 @@
     {{range .Sheets}}
     <h1>Drill {{$d.Name}} sheet {{.PageNumber}}</h1>
 
+    <p class="intro">{{.Intro}}</p>
+
     <div class="three-columns">
         {{range .Questions}}
-        <p>{{.Text}}</p>
+        <p class="question_text">{{.Text}}</p>
         {{end}}
     </div>
 
