@@ -10,7 +10,7 @@ import (
 )
 
 type Question struct {
-	Text string
+	Text interface{}
 }
 
 type Sheet struct {
@@ -81,6 +81,8 @@ func main() {
 			}
 		} else if r.URL.Path == "/drill15m" {
 			data = drill15m()
+		} else if r.URL.Path == "/drill16n" {
+			data = drill16n()
 		}
 
 		err := t.Execute(w, data)
