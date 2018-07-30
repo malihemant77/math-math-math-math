@@ -5,7 +5,7 @@ import (
 	"html/template"
 )
 
-func drill17o() Drill {
+func drill17o(canminus bool) Drill {
 	const NULL = -99999999
 
 	modes := []int{5, 5, 6, 6, 6}
@@ -22,7 +22,12 @@ func drill17o() Drill {
 
 				var soal []int
 				var jawaban []int
-				var seed = []int{randint(-4, 8), randint(-2, 15)}
+				var seed []int
+				if canminus {
+					seed = []int{randint(-4, 8), randint(-2, 15)}
+				} else {
+					seed = []int{randint(0, 6), randint(1, 7)}
+				}
 				if seed[0] == 0 {
 					seed[0] = 1
 				}
@@ -51,10 +56,10 @@ func drill17o() Drill {
 
 					if keliatan == 1 {
 						soal = append(soal, jawaban[m])
-						hash += jawaban[m]*678943*m
+						hash += jawaban[m] * 678943 * m
 					} else {
 						soal = append(soal, NULL)
-						hash += NULL*m
+						hash += NULL * m
 						bolong++
 					}
 				}
