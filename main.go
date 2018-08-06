@@ -88,6 +88,8 @@ func main() {
 		} else if r.URL.Path == "/drill17o-nominus" {
 			data = drill17o(false)
 			data.Name = "17o catty"
+		} else if r.URL.Path == "/drill18p" {
+			data = drill18p(true)
 		}
 
 		err := t.Execute(w, data)
