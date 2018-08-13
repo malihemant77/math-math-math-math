@@ -15,7 +15,7 @@ type Question struct {
 
 type Sheet struct {
 	PageNumber int
-	Intro      string
+	Intro      interface{}
 	Questions  []Question
 }
 
@@ -30,6 +30,10 @@ func randint(min, lt int) int {
 	n := rand.Int()
 	n = n % (lt - min)
 	return n + min
+}
+
+func randseed(seed int64) {
+	rand.Seed(seed)
 }
 
 func checksum(a int) int {
@@ -90,6 +94,10 @@ func main() {
 			data.Name = "17o catty"
 		} else if r.URL.Path == "/drill18p" {
 			data = drill18p(true)
+		} else if r.URL.Path == "/drill19q" {
+			data = drill19q(false)
+		} else if r.URL.Path == "/drill19q-giveanswer" {
+			data = drill19q(true)
 		}
 
 		err := t.Execute(w, data)
