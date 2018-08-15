@@ -179,10 +179,12 @@ func drill19q(giveanswer bool) Drill {
 			t += b.String()
 			t += "<br><br>Total: ____________"
 
+			// this must not be conditional, to ensure that the random state is same with or without giveanswer
+			threshold := randint(3, 6)
 			if giveanswer {
 				t += fmt.Sprintf("%v %v", bestpath, bestsum)
 			} else {
-				t += fmt.Sprintf(" (Hint: It is more than %v)", bestsum-randint(3, 6))
+				t += fmt.Sprintf(" (Hint: It is more than %v)", bestsum-threshold)
 			}
 
 			questions = append(questions, Question{Text: template.HTML(t)})
