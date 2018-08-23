@@ -102,6 +102,10 @@ func main() {
 			data = drill20r(false)
 		} else if r.URL.Path == "/drill20r-giveanswer" {
 			data = drill20r(true)
+		} else if r.URL.Path == "/drill21s" {
+			data = drill21s(false)
+		} else if r.URL.Path == "/drill21s-giveanswer" {
+			data = drill21s(true)
 		}
 
 		err := t.Execute(w, data)
