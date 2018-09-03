@@ -51,6 +51,24 @@ func checksum(a int) int {
 	return checksum(res)
 }
 
+func circled(a int) string {
+	if a == 0 {
+		return "⓪"
+	}
+	if a >= 1 && a <= 20 {
+		return string('①' + a - 1)
+	}
+	panic("circled only accepts 0 to 20 inclusive")
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	} else {
+		return b
+	}
+}
+
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		t := template.Must(template.ParseFiles("templates/normal.html"))
@@ -106,6 +124,10 @@ func main() {
 			data = drill21s(false)
 		} else if r.URL.Path == "/drill21s-giveanswer" {
 			data = drill21s(true)
+		} else if r.URL.Path == "/drill22h" {
+			data = drill22h(false)
+		} else if r.URL.Path == "/drill22t" {
+			data = drill22t()
 		}
 
 		err := t.Execute(w, data)
