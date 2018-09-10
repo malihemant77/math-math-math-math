@@ -69,6 +69,14 @@ func min(a, b int) int {
 	}
 }
 
+func max(a, b int) int {
+	if a < b {
+		return b
+	} else {
+		return a
+	}
+}
+
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		t := template.Must(template.ParseFiles("templates/normal.html"))
@@ -128,6 +136,10 @@ func main() {
 			data = drill22h(false)
 		} else if r.URL.Path == "/drill22t" {
 			data = drill22t()
+		} else if r.URL.Path == "/drill23h" {
+			data = drill23h(false)
+		} else if r.URL.Path == "/drill23u" {
+			data = drill23u()
 		}
 
 		err := t.Execute(w, data)
