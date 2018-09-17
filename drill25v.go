@@ -6,7 +6,7 @@ import (
 	"sort"
 )
 
-func drill24v() Drill {
+func drill25v() Drill {
 	randseed(1)
 
 	modes := [][]int{
@@ -86,5 +86,5 @@ func drill24v() Drill {
 		sheets = append(sheets, sheet)
 	}
 
-	return Drill{Name: "24v", Sheets: sheets, ColumnCount: 1, MarginBottom: "4em"}
+	return Drill{Name: "25v", Sheets: sheets, ColumnCount: 1, MarginBottom: "4em"}
 }
