@@ -140,6 +140,10 @@ func main() {
 			data = drill23h(false)
 		} else if r.URL.Path == "/drill23u" {
 			data = drill23u()
+		} else if r.URL.Path == "/drill24t" {
+			data = drill24t(false)
+		} else if r.URL.Path == "/drill24t-giveanswer" {
+			data = drill24t(true)
 		} else if r.URL.Path == "/drill25v" {
 			data = drill25v()
 		}
