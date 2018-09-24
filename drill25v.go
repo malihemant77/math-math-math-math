@@ -58,6 +58,30 @@ func drill25v() Drill {
 		return res
 	}
 
+	solver := func(total int, coins []int) int {
+		dp := make([]int, total+1)
+		for i := 0; i <= total; i++ {
+			dp[i] = -1
+		}
+		dp[0] = 0
+
+		for i := 1; i <= total; i++ {
+			min := 9999
+			for _, coin := range coins {
+				if i-coin >= 0 && dp[i-coin] != -1 {
+					this := dp[i-coin]+1
+					if this < min {
+						min = this
+					}
+				}
+			}
+			if min != 9999 {
+				dp[i] = min
+			}
+		}
+		return dp[total]
+	}
+
 	var sheets []Sheet
 	for i := 0; i < len(modes); i++ {
 		mode := modes[i]
@@ -66,7 +90,8 @@ func drill25v() Drill {
 
 		soals := gen(mode)
 		for _, soal := range soals {
-			t := fmt.Sprintf("%v  =", soal)
+			needed := solver(soal, mode)
+			t := fmt.Sprintf("%v  =                                                                   [%v]", soal, needed)
 
 			questions = append(questions, Question{Text: template.HTML(t)})
 		}
@@ -81,7 +106,7 @@ func drill25v() Drill {
 		}
 
 		sheet := Sheet{PageNumber: i + 1, Questions: questions}
-		sheet.Intro = template.HTML(fmt.Sprintf("Which coins do you need to use to make up the amount given? Use as few coins as possible.<br>Available coins: %v", coined))
+		sheet.Intro = template.HTML(fmt.Sprintf("Which coins do you need to use to make up the amount given?<br>Use as few coins as possible.<br>Available coins: %v<br>The number in brackets shows the correct number of coins you need to use.", coined))
 
 		sheets = append(sheets, sheet)
 	}
