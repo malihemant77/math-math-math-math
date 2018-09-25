@@ -6,15 +6,27 @@ import (
 	"sort"
 )
 
-func drill25v() Drill {
+func drill25v(coffee bool) Drill {
 	randseed(1)
 
-	modes := [][]int{
-		{5, 2, 1},
-		{20, 5, 1},
-		{10, 5, 2, 1},
-		{50, 10, 5, 1},
-		{50, 20, 5, 2},
+	var modes [][]int
+
+	if coffee {
+		modes = [][]int{
+			{5, 2, 1},
+			{10, 2, 1},
+			{10, 5, 1},
+			{10, 5, 2},
+			{10, 5, 2, 1},
+		}
+	} else {
+		modes = [][]int{
+			{5, 2, 1},
+			{20, 5, 1},
+			{10, 5, 2, 1},
+			{50, 10, 5, 1},
+			{50, 20, 5, 2},
+		}
 	}
 
 	gen := func(mode []int) []int {
@@ -111,5 +123,10 @@ func drill25v() Drill {
 		sheets = append(sheets, sheet)
 	}
 
-	return Drill{Name: "25v", Sheets: sheets, ColumnCount: 1, MarginBottom: "4em"}
+	name := "25v"
+	if coffee {
+		name += " ☕️"
+	}
+
+	return Drill{Name: name, Sheets: sheets, ColumnCount: 1, MarginBottom: "4em"}
 }
