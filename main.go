@@ -152,6 +152,8 @@ func main() {
 			data = drill26w()
 		} else if r.URL.Path == "/drill27w" {
 			data = drill27w()
+		} else if r.URL.Path == "/drill28w" {
+			data = drill28w()
 		}
 
 		err := t.Execute(w, data)
